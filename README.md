@@ -8,7 +8,7 @@ Centralizzo in questa repository *specifications* per la web app PAGES/TAL/ThDS.
 ### File importanti
 
 - Schema generale UML
-    - [schema.png]
+    - [schema.png](schema.png)
     - [schema.uml]
 - Specifiche per le ricerche
     - [ricerche_testuali.md]
