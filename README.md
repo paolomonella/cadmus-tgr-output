@@ -14,7 +14,7 @@ Centralizzo in questa repository *specifications* per la web app PAGES/TAL/ThDS.
     - [ricerche_testuali.md](ricerche_testuali.md)
     - [ricerche_mss.md](ricerche_mss.md)
 - [README.md] centralizza tutte le altre informazioni di dettaglio
-    - la sezione [Thread email e link - per Paolo](# Thread email e link - per Paolo) è solo per Paolo)
+    - la sezione [Thread email e link per Paolo](#Thread email e link - per Paolo) è solo per Paolo)
     - per il resto, nel file le feature requests sono organizzate tematicamente (titolo 2 / titolo 3)
     - anche il file [vecchie_note.md](vecchie_note.md) è da ignorare, perché contiene note riportate altrove o non più importanti
 
@@ -277,7 +277,7 @@ Origine di questa nota: [e2.md], [2022-02-21_riunione_visualizzaz_cadmus.md] e g
 
 
 
-## Thread email e link - per Paolo
+## Thread email e link per Paolo
 
 ### Fonti di informazione per questo file README.md
 
