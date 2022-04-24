@@ -1,0 +1,260 @@
+﻿@startuml
+
+' Per generare l'immagine dello schema: plantuml schema.png
+' Per generarla da dentro vim: !plantuml %
+' Sto pubblicando il file .png in http://www.paolomonella.it/papers/schema.png
+
+left to right direction
+
+
+''''''''
+' HOME '
+''''''''
+
+interface home {
+    + info progetti
+    + menu nav
+}
+
+
+package tre_sezioni {
+
+    home --> testi
+    interface testi {
+    }
+
+    home --> mss
+    interface mss {
+    }
+
+    home --> lista_statica_gramm
+    interface lista_statica_gramm {
+         + elenco testi grammaticali
+         + un file statico 
+         + alcune righe sono \n linkate staticamente \n ai testi in Cadmus
+         + (filtra per autore e titolo? \n Elena dice no)
+    }
+
+}
+
+lista_statica_gramm --> testo_indice: link statici
+
+
+''''''''''''''''
+' TESTI_BROWSE '
+''''''''''''''''
+
+interface testi_browse {
+    + elenco dei testi \n il cui testo è \n in Cadmus
+    + l'elenco è generato \n a partire dal - lungo - thes. \n "author-works@en" \n ma prende solo i testi \n effettivam. presenti \n in Cadmus, per cui \n serve una modifica del modello \n che indichi quali opere \n abbiamo e quali no
+    + da dove sono tratte le \n informazioni su ogni opera \n, cioè titolo esteso etc.?
+    + (filtra per autore e titolo)
+}
+testi --> testi_browse
+
+testi_browse --> testo_indice: selez. opera, \n filtri
+interface testo_indice {
+    + indice interno \n della singola opera
+    + (elenca item testuali)
+    + (ordinare e/o filtrare per libro  / paragr. \n /sottoparagr. Problema: attualm. \n libro/paragr. etc. vanno estratti \n parsando stringhe come \n "Prisc. ars 18, 307, 1" \n contenute in TokenTextPart/citation)
+}
+
+entity TokenTextPart_citation {
+    + è una proprietà \n degli item TokenTextPart
+    + una stringa come \n "Prisc. ars 18, 307, 1"
+    + l'elemento divisorio \n tra libro/par. etc. \n è sempre virgola-spazio
+}
+
+TokenTextPart_citation ..> testo_indice #text:green;line:green : orig. dati
+
+
+testo_indice --> testo_lettura : utente sceglie \n quale paragr. \n leggere
+interface testo_lettura {
+    + (3 colonne)
+}
+
+
+
+
+
+''''''''''''''''
+' TESTI_SEARCH '
+''''''''''''''''
+
+testi --> testi_search
+interface testi_search {
+    + per le ricerche \n possibili, fa \n testo il file \n ricerche_testuali.md, \n non questo schema
+}
+
+
+
+'''''''
+' MSS '
+'''''''
+
+mss --> mss_search
+interface mss_search {
+    + per le ricerche \n possibili, vedi \n ricerche_mss.md
+}
+
+mss_search --> ms_scheda : filtri/search
+interface ms_scheda {
+    + coi dati \n strutturati del MS
+    + tra tali dati ci sono le opere \n contenute dal MS: se Cadmus \n contiene un'opera, l'utente \n può cliccarci sopra \n e leggerne il testo
+    + codices disiecti: tra tali dati \n ci sono le unità codicologiche \n `MsUnitsPart`, che includono \n le informazioni per linkare \n l'unità X di un MS \n alle unità Y, Z \n di MSS diversi laddove \n X, Y e Z appartenessero \n un tempo allo stesso \n codex disiectus
+    + (mappa accanto \n con orig. MS?)
+}
+
+ms_scheda <-> ms_scheda : codices disiecti
+
+ms_scheda --> testo_indice : utente clicca su \n una delle opere \n contenute nel MS
+
+testo_indice --> ms_scheda : utente vuole sapere \n quali MSS riportano \n una certa opera
+
+entity manuscripts {
+    + item di tipo \n `manuscripts`
+    + (già strutturati in \n campi, es. "dataz., \n orig." etc.)
+}
+manuscripts ..> mss_search #text:green;line:green : orig. dati
+manuscripts ..> ms_scheda #text:green;line:green : orig. dati
+
+    
+
+
+'''''''''''''''''
+' TESTO_LETTURA '
+'''''''''''''''''
+
+package tre_colonne {
+    interface col_sx
+    interface col_centro
+    interface col_dx
+}
+
+
+'''''''''''''''
+' TRE COLONNE '
+'''''''''''''''
+
+testo_lettura --> col_sx
+testo_lettura --> col_centro
+testo_lettura --> col_dx
+
+interface col_sx {
+    + testo base \n latino
+    + (fissa, non scelta)
+    + (10 item testo \n lat. a volta)
+}
+
+interface col_centro {
+    + uno dei layer \n a scelta utente
+    + utente clicca sul siglum \n di un MS nell'app. crit.: \n quando è selezionato \n l'apparatus_layer o uno \n degli 'interpolation layer' \n (InterpolationsLayerFragment), \n l'utente clicca su un siglum \n e va alla scheda del MS
+}
+
+interface col_dx {
+    + uno dei layer \n a scelta utente
+    + le origini dati sono \n le stesse di col_centro
+}
+
+col_sx <.> col_centro : align, \n highlight
+col_sx <.>  col_dx : align, \n highlight
+
+
+''''''''''''''''''''''''''''''''''''''
+' DA SIGLA IN APP. CRIT. A SCHEDA MS '
+''''''''''''''''''''''''''''''''''''''
+
+col_centro --> ms_scheda : utente clicca \n sul siglum di un MS \n nell'app. crit.
+
+
+
+''''''''''''''''''''''''''''''
+' ORIGINE DATI: NOTE/TRADUZ. '
+''''''''''''''''''''''''''''''
+
+package origine_dati {
+
+    entity TokenTextPart {
+        + token-based text part* \n (TokenTextPart)
+        + il testo base lat.
+    }
+    TokenTextPart .up.> col_sx  #text:green;line:green : orig. dati
+
+    ' Nota: prima avevo inserito quest'altra origine dati, ma poi riflettendo ho visto che è del tutto inutile
+    ' entity NotePart_generica {
+    '    + "note part for \n generic notes  (NotePart)"
+    '    + non la usiamo, \n ma è nel modello; la inserirei \n lo stesso: non comporta \n quasi lavoro in più
+    '}
+    'NotePart_generica .up.> col_centro  #text:green;line:green : orig. dati
+
+    entity NotePart_traduzione {
+        + "note part for translation, \n with role=transl and \n tag=language (NotePart)"
+    }
+    NotePart_traduzione .up.> col_centro  #text:green;line:green : orig. dati
+
+
+    '''''''''''''''''''''
+    ' ORIG. DATI: LAYER '
+    '''''''''''''''''''''
+     
+    entity apparatus_layer {
+        + apparatus layer \n (ApparatusLayerFragment)
+    }
+    apparatus_layer .up.> col_centro  #text:green;line:green : orig. dati
+
+    entity quotations_layer {
+        + quotations layer \n (VarQuotationsLayerFragment) for \n apparatus fontium et \n locorum classicorum
+    }
+    quotations_layer .up.> col_centro  #text:green;line:green : orig. dati
+
+    entity int_layer_paleogr_transcr {
+        + "interpolations layer \n (InterpolationsLayerFragment)" \n with role "paleographic \n transcriptions"
+    }
+    int_layer_paleogr_transcr .up.> col_centro  #text:green;line:green : orig. dati
+
+    entity int_layer_glosses {
+        + "interpolations layer \n (InterpolationsLayerFragment)" \n with role "glosses"
+    }
+    int_layer_glosses .up.> col_centro  #text:green;line:green : orig. dati
+
+    entity int_layer_paratext {
+        + "interpolations layer \n (InterpolationsLayerFragment)" \n with role "paratext"
+    }
+    int_layer_paratext .up.> col_centro  #text:green;line:green : orig. dati
+
+    entity int_layer_hum_interp {
+        + "interpolations layer \n (InterpolationsLayerFragment)" \n with role "humanistic interpolations"
+    }
+    int_layer_hum_interp .up.> col_centro  #text:green;line:green : orig. dati
+
+    entity linguistic_tags {
+        + "linguistic tags layer \n (LingTagsLayerFragment)"
+    }
+    linguistic_tags .up.> col_centro  #text:green;line:green : orig. dati
+
+}
+
+
+''''''''''''''''
+' TESTI_SEARCH '
+''''''''''''''''
+
+testi_search -up-> TokenTextPart #text:orange;line:orange : ricerca_libera \n (qui e altrove: dev'essere \n possibile ricerca booleana \n con AND tra ricerca_libera \n testuale e filtri)
+testi_search -up-> TokenTextPart #text:red;line:red : filtro per autore/opera
+testi_search -up-> NotePart_traduzione #text:orange;line:orange : ricerca_libera
+testi_search -up-> apparatus_layer #text:orange;line:orange : ricerca_libera
+testi_search -up-> apparatus_layer #text:red;line:red : filtro per testimone \n (prima si vedono tutti, \n poi se ne possono \n togliere alcuni)
+testi_search -up-> quotations_layer #text:orange;line:orange : ricerca_libera \n (nel testo citato)
+testi_search -up-> quotations_layer #text:red;line:red : filtro per \n autore/opera citata; \n l'utente digita le prime \n lettere e trova il nome \n autore/opera
+testi_search -up-> int_layer_paleogr_transcr #text:orange;line:orange : ricerca_libera
+testi_search -up-> int_layer_glosses #text:orange;line:orange : ricerca_libera
+testi_search -up-> int_layer_paratext #text:orange;line:orange : ricerca_libera
+testi_search -up-> int_layer_hum_interp #text:orange;line:orange : ricerca_libera
+testi_search -up-> int_layer_hum_interp #text:red;line:red : filtro per autore/opera; \n dal thes. autori/opere; \n si tratta dell'opera \n da cui è tratta la citazione
+testi_search -up-> int_layer_hum_interp #text:red;line:red : filtro per testimone \n (prima si vedono tutti, \n poi se ne possono \n togliere alcuni)
+testi_search -up-> linguistic_tags #text:orange;line:orange : ricerca_libera \n (pesca nel \n campo 'lemmata')
+testi_search -up-> linguistic_tags #text:red;line:red : filtro per ling. tag: \n pesca nel thes. linguistic tags; \n l'utente digita le prime \n lettere e trova il tag)
+testi_search -up-> linguistic_tags #text:red;line:red : filtro \n per lemma trattato, da \n LingTagsLayerFragment \n → LingTaggedForm \n → lemmata)
+
+
+@enduml

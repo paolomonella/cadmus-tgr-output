@@ -1,0 +1,7 @@
+@startuml
+layer -- citazioni
+layer -- trascriz_graeca
+layer -- glosse
+layer -- interpolazioni
+layer -- "altri? vd. modelli cadmus"
+@enduml

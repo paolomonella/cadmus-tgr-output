@@ -1,0 +1,46 @@
+@startuml
+
+
+''''''''
+' HOME '
+''''''''
+
+interface home {
+    + info progetti
+    + menu nav
+}
+
+home -- testi
+interface testi {
+}
+
+home -- mss
+interface mss {
+}
+
+
+
+''''''''''''''''
+' TESTI_BROWSE '
+''''''''''''''''
+
+testi -- testi_browse
+
+interface testi_browse {
+     + elenco testi: Ars+testi del PRIN
+     + (filtra per autore e titolo)
+     + (evidenziare Prisc. Ars?)
+     + (abbiamo modo di cercare/filtrare \n per secolo etc.? penso di no)
+}
+
+
+testi_browse -- testo_indice: selez. opera, \n filtri
+interface testo_indice {
+     + (elenca item testuali)
+     + (filtrali)
+}
+
+testo_indice -- testo_lettura : selez. sez., \n filtri
+
+
+@enduml

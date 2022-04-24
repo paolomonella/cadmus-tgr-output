@@ -1,0 +1,93 @@
+@startuml
+
+
+''''''''
+' HOME '
+''''''''
+
+interface home {
+    + info progetti
+    + menu nav
+}
+
+home -- testi
+interface testi {
+}
+
+home -- mss
+interface mss {
+}
+
+
+
+''''''''''''''''
+' TESTI_BROWSE '
+''''''''''''''''
+
+testi -- testi_browse
+
+interface testi_browse {
+     + elenco testi: Ars+testi del PRIN
+     + (filtra per autore e titolo)
+     + (evidenziare Prisc. Ars?)
+     + (abbiamo modo di cercare/filtrare \n per secolo etc.? penso di no)
+}
+
+
+testi_browse --> testo_indice: selez. opera, \n filtri
+interface testo_indice {
+     + (elenca item testuali)
+     + (filtrali)
+}
+
+testo_indice --> testo_lettura : selez. sez., \n filtri
+interface testo_lettura {
+    + (3 colonne)
+}
+
+
+
+
+
+' §§§
+
+
+''''''''''''''''
+' TESTI_SEARCH '
+''''''''''''''''
+
+testi -- testi_search
+interface testi_search {
+}
+
+
+'''''''
+' MSS '
+'''''''
+
+mss -- mss_browse
+interface mss_browse {
+    + elenco mss
+    + (filtra sulla segnatura del MS)
+}
+
+mss_browse -- ms_scheda
+interface ms_scheda {
+    + coi dati strutturati del MS
+    + (mappa accanto?)
+}
+
+
+entity manuscripts {
+    + item di tipo `manuscripts`
+}
+manuscripts -up-> ms_scheda #line:green
+
+mss -- mss_search
+interface mss_search {
+    + ricerca avanzata \n sui metadati di ogni MS \n (es.: sec., bibliot. etc.)
+    + (quali metadati? Anna/Chiara)
+}
+    
+
+@enduml

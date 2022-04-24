@@ -1,0 +1,64 @@
+@startuml
+
+''''''''''''''''''''''''''''
+' ORIG. DATI: NOTE/TRADUZ. '
+''''''''''''''''''''''''''''
+
+entity NotePart_generica {
+    + "note part for \n generic notes  (NotePart)"
+    + non la usiamo, \n ma è nel modello; la inserirei \n lo stesso: non comporta \n quasi lavoro in più
+}
+NotePart_generica -up-> col_centro : orig. dati
+
+entity NotePart_traduzione {
+    + "note part for translation, \n with role=transl and \n tag=language (NotePart)"
+}
+NotePart_traduzione -up-> col_centro : orig. dati
+
+
+'''''''''''''''''''''
+' ORIG. DATI: LAYER '
+'''''''''''''''''''''
+ 
+entity apparatus_layer {
+    + apparatus layer \n (ApparatusLayerFragment)
+}
+apparatus_layer -up-> col_centro : orig. dati
+
+
+entity quotations_layer {
+    + quotations layer \n (VarQuotationsLayerFragment) for \n apparatus fontium et \n locorum classicorum
+}
+quotations_layer -up-> col_centro : orig. dati
+
+
+entity int_layer_paleogr_transcr {
+    + "interpolations layer \n (InterpolationsLayerFragment)" \n with role "paleographic \n transcriptions"
+}
+int_layer_paleogr_transcr -up-> col_centro : orig. dati
+
+
+entity int_layer_glosses {
+    + "interpolations layer \n (InterpolationsLayerFragment)" \n with role "glosses"
+}
+int_layer_glosses -up-> col_centro : orig. dati
+
+
+entity int_layer_paratext {
+    + "interpolations layer \n (InterpolationsLayerFragment)" \n with role "paratext"
+}
+int_layer_paratext -up-> col_centro : orig. dati
+
+
+entity int_layer_hum_interp {
+    + "interpolations layer \n (InterpolationsLayerFragment)" \n with role "humanistic interpolations"
+}
+int_layer_hum_interp -up-> col_centro : orig. dati
+
+
+entity linguistic_tags {
+    + "linguistic tags layer \n (LingTagsLayerFragment)"
+}
+linguistic_tags -up-> col_centro : orig. dati
+
+@enduml

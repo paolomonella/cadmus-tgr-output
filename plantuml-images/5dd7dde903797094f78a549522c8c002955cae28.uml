@@ -1,0 +1,114 @@
+@startuml
+
+left to right direction
+
+'''''''''''''''''
+' TESTO_LETTURA '
+'''''''''''''''''
+
+'Ripetuto dall'altro schema (ho spezzato gli schemi perché veniva uno schema troppo grande):
+interface testo_lettura {
+    + (3 colonne)
+}
+
+testo_lettura --> col_sx
+testo_lettura --> col_centro
+testo_lettura --> col_dx
+
+
+
+interface col_sx {
+    + testo lat.
+    + (fisso, non scelta)
+    + (10 item testo \n lat. a volta)
+}
+
+entity TokenTextPart {
+    + token-based text part* \n (TokenTextPart)
+    + il testo base lat.
+}
+TokenTextPart -up-> col_sx  #text:green;line:green : orig. dati
+
+
+
+
+interface col_centro {
+    + uno dei layer \n a scelta utente
+}
+
+interface col_dx {
+    + uno dei layer \n a scelta utente
+    + le origini dati sono \n le stesse di col_centro
+}
+
+col_sx <-> col_centro : align, \n highlight
+col_sx <->  col_dx : align, \n highlight
+
+
+''''''''''''''''''''''''''''
+' ORIG. DATI: NOTE/TRADUZ. '
+''''''''''''''''''''''''''''
+
+entity NotePart_generica {
+    + "note part for \n generic notes  (NotePart)"
+    + non la usiamo, \n ma è nel modello; la inserirei \n lo stesso: non comporta \n quasi lavoro in più
+}
+NotePart_generica -up-> col_centro  #text:green;line:green : orig. dati
+
+entity NotePart_traduzione {
+    + "note part for translation, \n with role=transl and \n tag=language (NotePart)"
+}
+NotePart_traduzione -up-> col_centro  #text:green;line:green : orig. dati
+
+
+'''''''''''''''''''''
+' ORIG. DATI: LAYER '
+'''''''''''''''''''''
+ 
+entity apparatus_layer {
+    + apparatus layer \n (ApparatusLayerFragment)
+}
+apparatus_layer -up-> col_centro  #text:green;line:green : orig. dati
+
+
+entity quotations_layer {
+    + quotations layer \n (VarQuotationsLayerFragment) for \n apparatus fontium et \n locorum classicorum
+}
+quotations_layer -up-> col_centro  #text:green;line:green : orig. dati
+
+entity int_layer_paleogr_transcr {
+    + "interpolations layer \n (InterpolationsLayerFragment)" \n with role "paleographic \n transcriptions"
+}
+int_layer_paleogr_transcr -up-> col_centro  #text:green;line:green : orig. dati
+
+entity int_layer_glosses {
+    + "interpolations layer \n (InterpolationsLayerFragment)" \n with role "glosses"
+}
+int_layer_glosses -up-> col_centro  #text:green;line:green : orig. dati
+
+entity int_layer_paratext {
+    + "interpolations layer \n (InterpolationsLayerFragment)" \n with role "paratext"
+}
+int_layer_paratext -up-> col_centro  #text:green;line:green : orig. dati
+
+entity int_layer_hum_interp {
+    + "interpolations layer \n (InterpolationsLayerFragment)" \n with role "humanistic interpolations"
+}
+int_layer_hum_interp -up-> col_centro  #text:green;line:green : orig. dati
+
+entity linguistic_tags {
+    + "linguistic tags layer \n (LingTagsLayerFragment)"
+}
+linguistic_tags -up-> col_centro  #text:green;line:green : orig. dati
+
+'Ripetuto dall'altro schema (ho spezzato gli schemi perché veniva uno schema troppo grande):
+
+
+''''''''''''''''
+' TESTI_SEARCH '
+''''''''''''''''
+
+'Ripetuto dall'altro schema (ho spezzato gli schemi perché veniva uno schema troppo grande):
+testi_search --> TokenTextPart #text:green;line:orange : search su
+
+@enduml

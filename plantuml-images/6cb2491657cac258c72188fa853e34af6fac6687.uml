@@ -1,0 +1,15 @@
+@startuml
+
+''''''''''''''''
+' TESTI_SEARCH '
+''''''''''''''''
+
+'Ripetuto dall'altro schema (ho spezzato gli schemi perché veniva uno schema troppo grande):
+interface testi_search {
+}
+
+testi_search --> TokenTextPart #text:green;line:orange : search su
+
+
+
+@enduml

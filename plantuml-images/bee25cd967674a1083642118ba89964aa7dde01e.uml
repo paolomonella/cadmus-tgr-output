@@ -1,0 +1,142 @@
+@startuml
+
+
+''''''''
+' HOME '
+''''''''
+
+interface home {
+    + info progetti
+    + menu nav
+}
+
+home -- testi
+interface testi {
+}
+
+home -- mss
+interface mss {
+}
+
+
+
+''''''''''''''''
+' TESTI_BROWSE '
+''''''''''''''''
+
+testi -- testi_browse
+
+interface testi_browse {
+     + elenco testi: Ars+testi del PRIN
+     + (filtra per autore e titolo)
+     + (evidenziare Prisc. Ars?)
+     + (abbiamo modo di cercare/filtrare \n per secolo etc.? penso di no)
+}
+
+
+testi_browse -- testo_indice: selez. opera, \n filtri
+interface testo_indice {
+     + (elenca item testuali)
+     + (filtrali)
+}
+
+testo_indice -- testo_lettura : selez. sez., \n filtri
+
+
+
+'''''''''''''''''
+' TESTO_LETTURA '
+'''''''''''''''''
+
+interface testo_lettura {
+    + (3 colonne)
+}
+
+testo_lettura -- col_sx
+testo_lettura -- col_centro
+testo_lettura -- col_dx
+
+
+
+interface col_sx {
+    + testo lat.
+    + (fisso, non scelta)
+    + (10 item testo \n lat. a volta)
+}
+
+entity TokenTextPart {
+    + `TokenTextPart`
+    + il testo base lat.
+}
+TokenTextPart -up-> col_sx : orig. dati
+
+
+
+interface col_centro {
+    + uno dei layer \n a scelta utente
+}
+
+interface col_dx {
+    + uno dei layer \n a scelta utente
+    + le origini dati sono \n le stesse di col_centro
+}
+
+col_sx <-> col_centro : align, \n highlight
+col_sx <->  col_dx : align, \n highlight
+
+
+entity nota_generica {
+    + `NotePart`
+    + "note part for \n generic notes  (NotePart)"
+    - non la usiamo attualmente, ma è nel modello; la inserirei lo stesso: non comporta lavoro in più 
+}
+nota_generica -up-> col_centro : orig. dati
+
+entity traduzione {
+    + `NotePart`
+    + "note part for translation, \n with roletransl and \n taglanguage (NotePart)"
+}
+traduzione -up-> col_centro : orig. dati
+
+
+
+
+''''''''''''''''
+' TESTI_SEARCH '
+''''''''''''''''
+
+testi -- testi_search
+interface testi_search {
+}
+
+
+'''''''
+' MSS '
+'''''''
+
+mss -- mss_browse
+interface mss_browse {
+    + elenco mss
+    + (filtra sulla segnatura del MS)
+}
+
+mss_browse -- ms_scheda
+interface ms_scheda {
+    + coi dati strutturati del MS
+    + (mappa accanto?)
+}
+
+
+entity manuscripts {
+    + item di tipo `manuscripts`
+}
+manuscripts -up-> ms_scheda : orig. dati
+
+mss -- mss_search
+interface mss_search {
+    + ricerca avanzata \n sui metadati di ogni MS \n (es.: sec., bibliot. etc.)
+    + (quali metadati? Anna/Chiara)
+}
+    
+
+@enduml

@@ -1,0 +1,8 @@
+@startuml
+
+
+interface testi_search {
+}
+
+
+@enduml

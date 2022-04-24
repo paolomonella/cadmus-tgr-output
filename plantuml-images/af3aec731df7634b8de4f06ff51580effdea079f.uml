@@ -1,0 +1,43 @@
+@startuml
+
+
+
+''''''''''''''''
+' TESTI_SEARCH '
+''''''''''''''''
+
+testi -- testi_search
+interface testi_search {
+}
+
+
+'''''''
+' MSS '
+'''''''
+
+mss -- mss_browse
+interface mss_browse {
+    + elenco mss
+    + (filtra sulla segnatura del MS)
+}
+
+mss_browse -- ms_scheda
+interface ms_scheda {
+    + coi dati strutturati del MS
+    + (mappa accanto?)
+}
+
+
+entity manuscripts {
+    + item di tipo `manuscripts`
+}
+manuscripts -up-> ms_scheda : orig. dati
+
+mss -- mss_search
+interface mss_search {
+    + ricerca avanzata \n sui metadati di ogni MS \n (es.: sec., bibliot. etc.)
+    + (quali metadati? Anna/Chiara)
+}
+    
+
+@enduml

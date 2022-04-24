@@ -1,0 +1,193 @@
+@startuml
+
+
+''''''''
+' HOME '
+''''''''
+
+interface home {
+    + info progetti
+    + menu nav
+}
+
+home -- testi
+interface testi {
+}
+
+home -- mss
+interface mss {
+}
+
+
+
+''''''''''''''''
+' TESTI_BROWSE '
+''''''''''''''''
+
+testi -- testi_browse
+
+interface testi_browse {
+     + elenco testi: Ars+testi del PRIN
+     + (filtra per autore e titolo)
+     + (evidenziare Prisc. Ars?)
+     + (abbiamo modo di cercare/filtrare \n per secolo etc.? penso di no)
+}
+
+
+testi_browse -- testo_indice: selez. opera, \n filtri
+interface testo_indice {
+     + (elenca item testuali)
+     + (filtrali)
+}
+
+testo_indice -- testo_lettura : selez. sez., \n filtri
+
+
+
+'''''''''''''''''
+' TESTO_LETTURA '
+'''''''''''''''''
+
+interface testo_lettura {
+    + (3 colonne)
+}
+
+testo_lettura -- col_sx
+testo_lettura -- col_centro
+testo_lettura -- col_dx
+
+
+
+interface col_sx {
+    + testo lat.
+    + (fisso, non scelta)
+    + (10 item testo \n lat. a volta)
+}
+
+entity TokenTextPart {
+    + token-based text part* \n (TokenTextPart)
+    + il testo base lat.
+}
+TokenTextPart -up-> col_sx : orig. dati
+
+
+
+interface col_centro {
+    + uno dei layer \n a scelta utente
+}
+
+interface col_dx {
+    + uno dei layer \n a scelta utente
+    + le origini dati sono \n le stesse di col_centro
+}
+
+col_sx <-> col_centro : align, \n highlight
+col_sx <->  col_dx : align, \n highlight
+
+
+''''''''''''''''''''''''''''
+' ORIG. DATI: NOTE/TRADUZ. '
+''''''''''''''''''''''''''''
+
+entity NotePart_generica {
+    + "note part for \n generic notes  (NotePart)"
+    + non la usiamo, \n ma è nel modello; la inserirei \n lo stesso: non comporta \n quasi lavoro in più
+}
+NotePart_generica -up-> col_centro : orig. dati
+
+entity NotePart_traduzione {
+    + "note part for translation, \n with role=transl and \n tag=language (NotePart)"
+}
+NotePart_traduzione -up-> col_centro : orig. dati
+
+
+'''''''''''''''''''''
+' ORIG. DATI: LAYER '
+'''''''''''''''''''''
+ 
+entity apparatus_layer {
+    + "apparatus layer (ApparatusLayerFragment)"
+}
+apparatus_layer -up-> col_centro : orig. dati
+
+
+entity quotations_layer {
+    + "quotations layer (VarQuotationsLayerFragment) for apparatus fontium et locorum classicorum"
+}
+quotations_layer -up-> col_centro : orig. dati
+
+
+entity int_layer_paleogr_transcr {
+    + "interpolations layer (InterpolationsLayerFragment)" with role "paleographic transcriptions"
+}
+int_layer_paleogr_transcr -up-> col_centro : orig. dati
+
+
+entity int_layer_glosses {
+    + "interpolations layer (InterpolationsLayerFragment)" with role "glosses"
+}
+int_layer_glosses -up-> col_centro : orig. dati
+
+
+entity int_layer_paratext {
+    + "interpolations layer (InterpolationsLayerFragment)" with role "paratext"
+}
+int_layer_paratext -up-> col_centro : orig. dati
+
+
+entity int_layer_hum_interp {
+    + "interpolations layer (InterpolationsLayerFragment)" with role "humanistic interpolations"
+}
+int_layer_hum_interp -up-> col_centro : orig. dati
+
+
+entity linguistic_tags {
+    + "linguistic tags layer (LingTagsLayerFragment)"
+}
+linguistic_tags -up-> col_centro : orig. dati
+
+
+
+
+
+
+
+''''''''''''''''
+' TESTI_SEARCH '
+''''''''''''''''
+
+testi -- testi_search
+interface testi_search {
+}
+
+
+'''''''
+' MSS '
+'''''''
+
+mss -- mss_browse
+interface mss_browse {
+    + elenco mss
+    + (filtra sulla segnatura del MS)
+}
+
+mss_browse -- ms_scheda
+interface ms_scheda {
+    + coi dati strutturati del MS
+    + (mappa accanto?)
+}
+
+
+entity manuscripts {
+    + item di tipo `manuscripts`
+}
+manuscripts -up-> ms_scheda : orig. dati
+
+mss -- mss_search
+interface mss_search {
+    + ricerca avanzata \n sui metadati di ogni MS \n (es.: sec., bibliot. etc.)
+    + (quali metadati? Anna/Chiara)
+}
+    
+
+@enduml

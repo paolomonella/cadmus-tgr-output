@@ -1,0 +1,104 @@
+@startuml
+
+
+''''''''
+' HOME '
+''''''''
+
+class home {
+    + info progetti
+    + menu nav
+}
+
+home -- testi
+
+home -- mss
+
+
+
+''''''''''''''''
+' TESTI_BROWSE '
+''''''''''''''''
+
+testi -- testi_browse
+
+class testi_browse {
+     + elenco testi: Ars+testi del PRIN
+     + (filtra per autore e titolo)
+     + (evidenziare Prisc. Ars?)
+     + (abbiamo modo di cercare/filtrare \n per secolo etc.? penso di no)
+}
+
+
+testi_browse -- testo_indice: selez. opera, \n filtri
+class testo_indice {
+     + (elenca item testuali)
+     + (filtrali)
+}
+
+testo_indice -- testo_lettura : selez. sez., \n filtri
+
+
+
+'''''''''''''''''
+' TESTO_LETTURA '
+'''''''''''''''''
+
+class testo_lettura {
+    + (3 colonne)
+}
+
+testo_lettura -- col_sx
+testo_lettura -- col_centro
+testo_lettura -- col_dx
+
+class col_centro {
+    + uno dei layer \n a scelta utente
+}
+
+class col_sx {
+    + testo lat.
+    + (fisso, non scelta)
+    + (10 item testo \n lat. a volta)
+}
+
+class col_dx {
+    + uno dei layer \n a scelta utente
+}
+
+col_sx <-> col_centro : align, \n highlight
+col_sx <->  col_dx : align, \n highlight
+
+
+
+''''''''''''''''
+' TESTI_SEARCH '
+''''''''''''''''
+
+testi -- testi_search
+
+
+'''''''
+' MSS '
+'''''''
+
+mss -- mss_browse
+class mss_browse {
+    + elenco mss
+    + (filtra sulla segnatura del MS)
+}
+
+mss_browse -- ms_scheda
+class ms_scheda {
+    + coi dati strutturati del MS
+    + (mappa accanto?)
+}
+
+mss -- mss_search
+interface mss_search {
+    + ricerca avanzata \n sui metadati di ogni MS \n (es.: sec., bibliot. etc.)
+    + (quali metadati? Anna/Chiara)
+}
+    
+
+@enduml
