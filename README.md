@@ -268,7 +268,7 @@ Questi due dossier restano aperti. Michela vuole portare avanti questi output so
 Origine di questa nota: [e2.md], [2022-02-21_riunione_visualizzaz_cadmus.md] e gli scambi di email
 
 
-### PAGES modifiche da fare a Cadmus
+### Breaking change per aggiornamento Cadmus
 
 - Vd. il breaking change descritto in [questo file](2021-11-26_riunione_io_e_daniele_visualizzaz_cadmus.md)
     - ho scritto a Daniele il 21.03.2022 chiedendogli se sia ancora da fare
@@ -279,7 +279,7 @@ Origine di questa nota: [e2.md], [2022-02-21_riunione_visualizzaz_cadmus.md] e g
 
 ## Thread email e link per Paolo
 
-### Fonti di informazione per questo file README.md
+### Fonti di informazione per questo file
 
 Ho creato questo file a fine aprile 2022 riportando qui le questioni ancora aperte sulla visualizzazione. Vi sono confluite annotazioni tratte da:
 
@@ -324,6 +324,31 @@ Ho creato questo file a fine aprile 2022 riportando qui le questioni ancora aper
 
 Origine di questa nota: [2022-02-21_riunione_visualizzaz_cadmus.md], con aggiornamenti
 
+
+
+## Stralcio su ricerche strutt. su MSS da e3
+
+- Ho tolto il punto **a**, che riguardava la ricerca libera
+- Ho riassunto i contenuti delle indicazioni di Elena nel file [ricerche_mss.md](ricerche_mss.md)
+
+~~~
+    b) filtri per ricerca avanzata:
+
+        I) datazione (orig. dati: HistoricalDate) [fatto]
+
+        II) origine geografica (orig. dati: MsPlacesPart > MsPlace) [fatto]
+
+        III) scrittura (orig. dati: MsScriptsPart > MsScript > type = thesarus ms-script-types) [fatto]
+
+        IV) mani (orig. dati: MsScriptsPart > MsHand > id) [fatto]
+
+        IV) contenuti testuali (orig. dati: MsContentsPart > MsContent > work =
+        thesaurus author-work o manually written string) → [fatto]
+
+I risultati della ricerca dovrebbero apparire sempre come lista ordinata alfabeticamente sulla base della segnatura dei manoscritti (orig. dati: Metadata > Title). La ricerca dovrebbe poter funzionare sia che il campo libero di ricerca sia utilizzato sia che non lo sia (cioè se lo si lascia vuoto e si usano solo i filtri).
+~~~
+
+Origine di questa nota: [e3.md], punto 2
 
 
 
