@@ -9,14 +9,14 @@ Centralizzo in questa repository *specifications* per la web app PAGES/TAL/ThDS.
 
 - Schema generale UML
     - [schema.png](schema.png)
-    - [schema.uml]
+    - [schema.uml](schema.uml)
 - Specifiche per le ricerche
-    - [ricerche_testuali.md]
-    - [ricerche_mss.md]
+    - [ricerche_testuali.md](ricerche_testuali.md)
+    - [ricerche_mss.md](ricerche_mss.md)
 - [README.md] centralizza tutte le altre informazioni di dettaglio
-    - la sezione [# Thread email e link (per Paolo)] è solo per Paolo
+    - la sezione [Thread email e link - per Paolo](# Thread email e link - per Paolo) è solo per Paolo)
     - per il resto, nel file le feature requests sono organizzate tematicamente (titolo 2 / titolo 3)
-    - anche il file [vecchie_note.md] è da ignorare, perché contiene note riportate altrove o non più importanti
+    - anche il file [vecchie_note.md](vecchie_note.md) è da ignorare, perché contiene note riportate altrove o non più importanti
 
 
 
@@ -270,34 +270,37 @@ Origine di questa nota: [e2.md], [2022-02-21_riunione_visualizzaz_cadmus.md] e g
 
 ### PAGES modifiche da fare a Cadmus
 
-- Vd. il breaking change descritto in [questo file](~/travaglio/pages/riunioni/2021-11-26_riunione_io_e_daniele_visualizzaz_cadmus.md)
+- Vd. il breaking change descritto in [questo file](2021-11-26_riunione_io_e_daniele_visualizzaz_cadmus.md)
     - ho scritto a Daniele il 21.03.2022 chiedendogli se sia ancora da fare
     - sì, è da fare, e al 23.04.2022 diventa urgente perché bisogna fare alcune modifiche a Cadmus
 
 
 
 
-## Thread email e link (per Paolo)
+## Thread email e link - per Paolo
 
 ### Fonti di informazione per questo file README.md
 
 Ho creato questo file a fine aprile 2022 riportando qui le questioni ancora aperte sulla visualizzazione. Vi sono confluite annotazioni tratte da:
 
-- [2021-11-25_riunione_umanisti_visualizzaz_cadmus.md]
-- [2021-11-26_riunione_io_e_daniele_visualizzaz_cadmus.md] 
-- [2022-02-21_riunione_visualizzaz_cadmus.md] 
-- [2022-03-07_bisettimanale.md]
-- [e1.md]
-- [e2.md]
-- [e3.md]
-- [e4_2022-02-27_18.10_da_paolo.md]
-- [e5_2022-02-27_22.29_da_elena.md]
-- [e6_2022-02-28_09.17_da_michela.md]
-- [e7_2022-02-28_12.26_da_paolo.md]
-- [e8_2022-03-01_13.45_da_paolo.md]
-- [e9_2022-03-05_19.41_da_elena.md]
-- [e_2022-03-07_1227_da_daniele.md]
-- [e_2022-03-07_1413_da_daniele.md]
+- [2021-11-25_riunione_umanisti_visualizzaz_cadmus.md](2021-11-25_riunione_umanisti_visualizzaz_cadmus.md)
+- [2021-11-26_riunione_io_e_daniele_visualizzaz_cadmus.md](2021-11-26_riunione_io_e_daniele_visualizzaz_cadmus.md) 
+- [2022-02-21_riunione_visualizzaz_cadmus.md](2022-02-21_riunione_visualizzaz_cadmus.md) 
+- [2022-03-07_bisettimanale.md](2022-03-07_bisettimanale.md)
+- [e1.md](e1.md)
+- [e2.md](e2.md)
+- [e3.md](e3.md)
+- [e4_2022-02-27_18.10_da_paolo.md](e4_2022-02-27_18.10_da_paolo.md)
+- [e5_2022-02-27_22.29_da_elena.md](e5_2022-02-27_22.29_da_elena.md)
+- [e6_2022-02-28_09.17_da_michela.md](e6_2022-02-28_09.17_da_michela.md)
+- [e7_2022-02-28_12.26_da_paolo.md](e7_2022-02-28_12.26_da_paolo.md)
+- [e8_2022-03-01_13.45_da_paolo.md](e8_2022-03-01_13.45_da_paolo.md)
+- [e9_2022-03-05_19.41_da_elena.md](e9_2022-03-05_19.41_da_elena.md)
+- [e_2022-03-07_1227_da_daniele.md](e_2022-03-07_1227_da_daniele.md)
+- [e_2022-03-07_1413_da_daniele.md](e_2022-03-07_1413_da_daniele.md)
+
+(questi file non sono visibili nella repository GitHub per questioni di riservatezza, ma li ho sul mio computer)
+
 
 ### Thread email importanti
 
