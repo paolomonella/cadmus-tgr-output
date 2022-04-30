@@ -10,7 +10,7 @@ Centralizzo in questa repository *specifications* per la web app PAGES/TAL/ThDS.
 - Schema generale UML
     - [schema.png](schema.png)
     - [schema.uml](schema.uml)
-- Specifiche per le ricerche
+- Specifici per le ricerche
     - [ricerche_testuali.md](ricerche_testuali.md)
     - [ricerche_mss.md](ricerche_mss.md)
 - [README.md] centralizza tutte le altre informazioni di dettaglio
@@ -124,12 +124,23 @@ Origine di questa nota: [e3.md], punto 0
 
 ### Nuovo layer witnesses
 
+#### Richiesta
+
 Quando aggiungiamo al modello il neonato "witness fragment" (quello che indica quali MSS tramandano un certo item testuale), bisognerà visualizzarlo, possibilmente in un angolino dei layer testuali.
 
 Origine di questa nota: [e2.md] e lo scambio di email con subj. "Quesiti su Cadmus" di aprile 2022.
 
+#### Da un'email di Elena del 30.04.2022
 
+> 5. Sono riuscita (faticosamente perché da quando è stato aggiornato il sito si carica molto lentamente e funziona in generale male, cioè si blocca a ogni pagina e va ricaricato in continuazione) ad accedere a Cadmus e ho visto che con l’aggiornamento è stata inserita per gli items-texts una Witnesses part, mentre a noi servirebbe un Witnesses layer, come avevo scritto a Daniele. Ci servirebbe cioè, all'interno del singolo item, di poter evidenziare porzioni di testo anche inferiori a quello dell'intero item e indicare per quelle quali mss. sono disponibili. Se abbiamo, invece, com'è adesso, una Witnesses part, possiamo elencare solo i mss. disponibili per l'intero item.
 
+Ho girato questa richiesta il 30.04.2022 a Daniele.
+
+#### Visualizzazione del layer
+
+Da un'email di Elena del 27.04.2022:
+
+> dovrebbe essere un riquadrino a comparsa, magari che appare solo quando si visualizza l'Apparatus layer e che comunque l'utente può far sparire se non gli interessa
 
 ### Numeri di riga
 
@@ -196,10 +207,48 @@ Il gruppo chiede di creare una mappa con una barra "linea del tempo" in basso.
         - E a destra la mappa si modifica dinamicamente
 
 *Origine dati*: I dati sull'area d'origine dei MSS dovrebbero venire, se non sbaglio, da [questo punto dei modelli Cadmus TGR](https://github.com/vedph/cadmus_tgr_doc/blob/master/models.md#MsPlacesPart):
+
 - `places` (`MsPlace[]`):
   - `area`\* (`string`, thesaurus)
 
+...e/o da `places/city`.
+
 Origine di questa nota: [2021-11-25_riunione_umanisti_visualizzaz_cadmus.md], par. "Manoscritti"
+
+
+### Nuovi thesauri area/city/site MSS
+
+Michela e Elena hanno deciso (vd. email da Elena del 30.04.2022) di creare tre nuovi thesauri di areas, cities, sites.
+
+A questo punto, quando i thesauri saranno creati, bisognerebbe cambiare il modello di `MsPlacesPart` (da <https://github.com/vedph/cadmus_tgr_doc/blob/master/models.md>), nei seguenti punti:
+
+- `places` (`MsPlace[]`):
+  - `area`\* (`string`, thesaurus)
+  - [...]
+  - `city` (`string`)
+  - `site` (`string`)
+
+nel senso che `area`, `city` e `site` dovrebbero prendere i loro dati da questi nuovi thesauri. Allo stato attuale del DB (30.04.2022), pochissimi (meno di una decina) di item MS hanno tali campi popolati, quindi si possono anche cancellare 'a mano' segnandosi altrove il contenuto, per poi reinserirlo quando i thesauri saranno creati.
+
+I thesauri saranno piuttosto lunghi, quindi sarà necessario che i collaboratori Cadmus possano (nell'interfaccia/app Cadmus) cercare al loro interno, come già si fa per il thesaurus authors/works e dei tag linguistici.
+
+
+
+### City e library in MsSignaturesPart
+
+`MsSignaturesPart` è "Inspired by [Itinera](https://github.com/vedph/cadmus_itinera_doc/blob/master/models.md#msplacepart)".
+
+In esso si trovano due proprietà, `city` e `library`. Cito dal modello di Itinera:
+
+- signatures (`MsSignature[]`):
+  - `city`\* (`string`)
+  - `library`\* (`string`)
+  - `fund` (`string`)
+  - `location`\* (`string`)
+
+Hanno deciso che il `city` di TGR/`MsPlacesPart` debba essere agganciato a un suo thesaurus. Possiamo agganciare anche il `city` di Itinera/`MsSignaturesPart` allo stesso thesaurus?
+
+Sto chiedendo agli umanisti PAGES se per caso il `library` di Itinera/`MsSignaturesPart` coincida, come contenuto, con il `site` di TGR/`MsPlacesPart` (che sarà agganciato anch'esso ad un thesaurus di biblioteche). Se mi dicono che è così, possiamo agganciare anche il `library` di Itinera/`MsSignaturesPart` allo stesso thesaurus?
 
 
 ### Codices disiecti
@@ -228,7 +277,60 @@ Origine di questa nota: l'elenco puntato viene da [2021-11-25_riunione_umanisti_
 
 
 
+
+
+
+
+
+
+## Indice citazioni
+
+Dato che ci sono le citazioni, gli indici 'tradizionali' servono meno, ma si è comunque pensato di crearne uno, che comprenda le citazioni presenti
+
+1. nel testo dei grammatici
+2. (per la sola *Ars* di Prisciano) anche nelle interpolazioni umanistiche (cioè `interpolations` con `role`="interp")
+
+
+
+### Origine dei dati
+
+1. Origine dei dati per le citazioni nel testo dei grammatici (punto 1 sopra):
+
+- `quotations` (`VarQuotation[]`): quotations with variants:
+   - `work`\* (`string`, hierarchical thesaurus: `author-works`): author and work.
+   - `authority`\* (`string`, thesaurus: `quotation-authorities`): the authority type (grammatical/linguistic)
+
+2. Origine dei dati per le citazioni all'interno delle interpolazioni umanistiche (punto 2 sopra):
+
+- `interpolations` (`Interpolation[]`):
+   - `quotations` (`VarQuotation[]`)
+
+### Ordinamento e visualizzazione
+
+Da un'email di Elena del 30.04.2022:
+
+- Si potrebbe trattare invero di un unico indice 
+    - al quale sia possibile aggiungere (*scil.* alle citazioni nel testo dei grammatici, punto 1 sopra) con un flag anche le citazioni presenti nell’Interpolations Layer (*scil.* le interpolazioni umanistiche, punto 2 sopra)
+- L’indice dovrebbe poter essere consultato
+    - per autori **citati**
+        - elenco degli autori **citati** e dei passi di ciascun autore secondo l'ordine del testo **citato** con indicazione accanto o link ai passi dei testi citanti, cioè dei grammatici, in cui le citazioni occorrono
+    - e per autori **citanti**
+        - elenco degli autori e opere grammaticali comprese nelle banca dati e, all'interno di ciascuna di queste, elenco degli esempi letterari che contengono, ordinati alfabeticamente di nuovo per autore **citato** e ordine del testo **citato**). 
+- Dovrebbe inoltre esser possibile [...] distinguere (con un flag?) autorità grammaticali e linguistiche
+    - Origine dei dati per questo: `quotations` / `authority`
+
+
+
+
+
+
+
+
+
+
+
 ## Altre questioni
+
 
 ### Contesto snippet risultati ricerca
 
@@ -273,7 +375,8 @@ Origine di questa nota: [e2.md], [2022-02-21_riunione_visualizzaz_cadmus.md] e g
 - Vd. il breaking change descritto in [questo file](2021-11-26_riunione_io_e_daniele_visualizzaz_cadmus.md)
     - ho scritto a Daniele il 21.03.2022 chiedendogli se sia ancora da fare
     - sì, è da fare, e al 23.04.2022 diventa urgente perché bisogna fare alcune modifiche a Cadmus
-
+- Aggiornamento fine aprile 2022
+    - abbiamo fatto l'aggiornamento il 23.04.2022, e si è 'rotto' Cadmus sul server IS (e nelle installazioni locali sul computer di Paolo); funziona invece sulle VM locali di Daniele. Stiamo provando a debuggare
 
 
 
@@ -354,6 +457,8 @@ Origine di questa nota: [e3.md], punto 2
 
 ### Email 24.04.2022 richiesta conferme
 
+*Riassumo come testo citato le risposte che ho avuto da Elena a fine aprile 2022 via email (in due sue email, del 27 e 30 aprile). Ho già riportato altrove nei file di questa cartella gli effetti di tali risposte.*
+
 Carissim*,
 
 in questi giorni sono stato in contatto con Daniele per il lavoro sulle ricerche nel sito che visualizzerà i dati di Cadmus, e vorrei chiedervi qualche conferma:
@@ -364,18 +469,27 @@ in questi giorni sono stato in contatto con Daniele per il lavoro sulle ricerche
 
 Pensate che serva?
 
+> Sì
+
 
 2. Non prevediamo di usare `NotePart` per note generiche. Noi usiamo solo `NotePart` con `role`=`transl` e `tag`=language (`NotePart`), giusto?
+
+> Esatto
 
 
 3. Online avremo solo la traduzione inglese, non anche quella italiana, giusto?
 
+> Poi anche italiana per altri grammatici
+
 
 4. Pensiamo di usare mai in futuro il campo `groupID` in `interpolations`? Interpolations può coprire le seguenti categorie: "paleographic transcription", "gloss", "paratext", "humanistic interpolation". Non so a cosa serva, o se usiamo/useremo, `groupID`.
+
+> Sì, avevamo previsto la class groupID anche nell'Interpolations Layer (che appunto non è concepito solo per le interpolazioni) per poterla eventualmente utilizzare per raggruppare serie di glosse o interpolazioni che ricorrono identiche o molto simili in più witnesses. 
 
 
 5. Quando inseriremo il nuovo layer `witnesses` (che indica quali MSS tramandano un certo item testuale) bisognerà visualizzarlo: va bene visualizzarlo in un un angolino della schermata di ogni layer testuale?
 
+> Sì
 
 6. Per i filtri di ricerca su MSS, Elena aveva scritto "II. origine geografica (orig. dati: MsPlacesPart > MsPlace)". All'interno del modello di MsPlace al momento ho selezionato i seguenti campi:
 
@@ -407,6 +521,8 @@ Riassumendo:
 - per `area`: pensiamo di farlo 'pescare' da un thesaurus?
 - per `city`: prevederei comunque (thesaurus o no) una ricerca 'filtrata' (i nomi di città sono un insieme di per sé piuttosto limitato).
 
+> Vd. il par. "Nuovi thesauri area/city/site MSS" su questo. Dopo di che, ricerca strutturata su area, city e site
+
 
 7. Mi confermate che non permettiamo una ricerca 'filtrata' per `signature`, giusto? Se non lo prevediamo, l'utente che cerchi un preciso MS avendone la segnatura dovrà scorrere la pagina (o usare control-F / find). Ma è probabile che la lista completa dei MS sarà divisa tra più schermate, perché attualmente ci sono centinaia di MSS in Cadmus.
 Il modello di `signature` è:
@@ -418,6 +534,8 @@ Il modello di `signature` è:
   - `fund` (`string`)
   - `location`\* (`string`)
 
+> E. ha risposto che era utile una ricerca filtrata per signature. Ma riflettendoci, dato che comunque si può fare una ricerca libera su tutti i campi di testo, non ce n'è bisogno: se cerco "3313" come ricerca libera, troverò comunque il MS Z.
+
 8. Ricerca di MSS per datazione.
 
 La datazione, nel nostro modello, è attribuita
@@ -427,6 +545,7 @@ La datazione, nel nostro modello, è attribuita
 
 Ho chiesto a daniele di impostare una ricerca per datazione che cerchi tra le datazioni delle `units` e dei `palimpsests`. Il riferimento all'intero manoscritto andrà comunque mostrato.
 
+> OK
 
 9. Indici
 

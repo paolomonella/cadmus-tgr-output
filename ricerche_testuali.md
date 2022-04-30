@@ -48,7 +48,9 @@ Da <https://github.com/vedph/cadmus_doc/blob/master/web/help/general-parts.md#no
 
 ### Ricerca "bruta" per testo: indicizzare
 
-- Ricerca libera sul testo della traduzione (online ci sarà solo la traduzione inglese: quella italiana andrà solo a stampa)
+- Ricerca libera sul testo della traduzione
+
+*Nota*: Online ora ci c'è solo la traduzione inglese, per Prisciano (la cui traduzione italiana andrà solo a stampa), ma in futuro avremo anche traduzioni italiane di altre opere grammaticali online.
 
 
 
@@ -99,7 +101,6 @@ Ricerca libera sul testo della variante, cioè su
   - `value`: the variant's value. May be zero (empty or null) for deletions. Is optional (because not used) when `type` is note.
   - `note`: an optional annotation. When `type` is _note_, `value` has no meaning, and this property contains the note's text. Otherwise, this can be an additional note, side to side with the variant's value.
 
-*Nota*: Non sono sicuro su entries/note. Ma se adeguatamente spiegato nella maschera di ricerca, si potrebbe tenere. Direi di metterlo per ora, e poi se agli altri in PAGES non piacerà, lo possiamo togliere.
 
 
 
@@ -199,7 +200,12 @@ Interpolations and transcriptions.
 
 *Nota*: anche qui, per `sources/witness`, vale la *Nota filter out* di sopra. Il gruppo PAGES non voleva che si potesse filtrare/cercare per testimone. Ma possiamo farlo se riesci a realizzare una sorta di approccio 'filter out'.
 
-*Nota*: Per ora non ho inserito `interpolations/groupID` perché non so a cosa serva. Ho chiesto al gruppo PAGES se lo usano o pensano di usarlo.
+*Nota*: Per ora non ho inserito `interpolations/groupID` perché non so a cosa serva. Ho chiesto al gruppo PAGES se lo usano o pensano di usarlo. Mi ha risposto Elena:
+
+> Sì, avevamo previsto la class groupID anche nell'Interpolations Layer (che appunto non è concepito solo per le interpolazioni) per poterla eventualmente utilizzare per raggruppare serie di glosse o interpolazioni che ricorrono identiche o molto simili in più witnesses. 
+
+Le sto chiedendo a mia volta se pensi che sia il caso di creare una ricerca (strutturata o di 'testo libero') su questo campo, nonché se pensino di ancorare mai questo campo a un thesaurus. Al momento penso però di non includerlo nelle ricerche.
+
 
 ### Ricerca "bruta" per testo: indicizzare
 

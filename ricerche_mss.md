@@ -40,7 +40,6 @@ Per le seguenti parti non è prevista nessuna rierca 'strutturata', ma solo rice
 
 
 
-
 ## MsPlacesPart
 
 ### Modello
@@ -60,9 +59,9 @@ Da <https://github.com/vedph/cadmus_tgr_doc/blob/master/models.md>:
 - `places` (`MsPlace[]`):
   - `area`\* (`string`, thesaurus)
   - `city` (`string`)
+  - `site` (`string`)
 
-*Nota*: Sto chiedendo a Elena e agli altri se vogliono includere anche `site`, ma per ora non lo includo. Una annotazione generale: non hanno ancora (per lo più) riempito le parts negli item dei MSS in Cadmus, quindi quando chiedo loro se una proprietà *sarà* popolata e utile in futuro, parlo appunto per lo più di quel che intendono fare poi, non di pratiche che hanno già in atto.
-
+*Nota*: in [README.md], paragrafo "Nuovi thesauri area/city/site MSS" chiediamo una modifica a Cadmus, per cui tutte e tre le proprietà `area`, `city` e `site` peschino da specifici thesauri (costituendi, al 30.04.2022).
 
 
 
