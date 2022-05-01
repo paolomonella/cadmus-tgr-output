@@ -484,7 +484,12 @@ Pensate che serva?
 
 4. Pensiamo di usare mai in futuro il campo `groupID` in `interpolations`? Interpolations può coprire le seguenti categorie: "paleographic transcription", "gloss", "paratext", "humanistic interpolation". Non so a cosa serva, o se usiamo/useremo, `groupID`.
 
+
 > Sì, avevamo previsto la class groupID anche nell'Interpolations Layer (che appunto non è concepito solo per le interpolazioni) per poterla eventualmente utilizzare per raggruppare serie di glosse o interpolazioni che ricorrono identiche o molto simili in più witnesses. 
+
+> (risposta del 01.05.2022 h 10:11): solo ricerca libera su questo groupID
+
+*Nota*: In un'email del 01.05.2022 h 10:11 E. ha scritto, parlando di `groupId`: "A questo punto direi di lasciare solo una eventuale ricerca libera su questo campo (cioè solo la ricerca libera su tutti i layer, senza prevedere alcun filtro specifico per questo campo)". Sto chiarendo con lei che per gli item testuali non abbiamo una "ricerca libera su tutti i layer".
 
 
 5. Quando inseriremo il nuovo layer `witnesses` (che indica quali MSS tramandano un certo item testuale) bisognerà visualizzarlo: va bene visualizzarlo in un un angolino della schermata di ogni layer testuale?

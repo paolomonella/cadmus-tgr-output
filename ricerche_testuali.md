@@ -211,8 +211,9 @@ Le sto chiedendo a mia volta se pensi che sia il caso di creare una ricerca (str
 
 - `interpolations` (`Interpolation[]`):
   - `value`\* (`string`)
+  - `groupId` (`string`)
 
-
+*Nota*: In un'email del 01.05.2022 h 10:11 E. ha scritto, parlando di `groupId`: "A questo punto direi di lasciare solo una eventuale ricerca libera su questo campo (cioè solo la ricerca libera su tutti i layer, senza prevedere alcun filtro specifico per questo campo)". Sto chiarendo con lei che per gli item testuali non abbiamo una "ricerca libera su tutti i layer".
 
 
 
@@ -244,6 +245,9 @@ Lo stesso di [#int_layer_paleogr_transcr].
 
 - `interpolations` (`Interpolation[]`):
   - `value`\* (`string`)
+  - `groupId` (`string`)
+
+*Nota*: In un'email del 01.05.2022 h 10:11 E. ha scritto, parlando di `groupId`: "A questo punto direi di lasciare solo una eventuale ricerca libera su questo campo (cioè solo la ricerca libera su tutti i layer, senza prevedere alcun filtro specifico per questo campo)". Sto chiarendo con lei che per gli item testuali non abbiamo una "ricerca libera su tutti i layer".
 
 
 
@@ -278,6 +282,9 @@ Lo stesso di [#int_layer_paleogr_transcr].
 
 - `interpolations` (`Interpolation[]`):
   - `value`\* (`string`)
+  - `groupId` (`string`)
+
+*Nota*: In un'email del 01.05.2022 h 10:11 E. ha scritto, parlando di `groupId`: "A questo punto direi di lasciare solo una eventuale ricerca libera su questo campo (cioè solo la ricerca libera su tutti i layer, senza prevedere alcun filtro specifico per questo campo)". Sto chiarendo con lei che per gli item testuali non abbiamo una "ricerca libera su tutti i layer".
 
 
 
