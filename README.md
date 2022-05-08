@@ -34,7 +34,7 @@ Centralizzo in questa repository *specifications* per la web app PAGES/TAL/ThDS.
 
 ## Lista autori-opere
 
-### Come generare lista autori-opere
+### Come generare lista autori-opere (groupID → thesaurus?)
 
 Il punto di partenza sono i groupID degli item, che contengono attualmente (ma vedi la modifica proposta sotto) stringhe libere del tipo "arus" (dato che Arusiano Messio ha solo un autore) che, per gli item di tipo text, identificano autore e opera in un'unica stringa (es.: "arus" per gli *Exempla* di Arusiano e "vel-orth" per l'ortografia di Velio).
 
@@ -49,6 +49,10 @@ Avevamo pensato ad una modifica ai modelli: far sì che il 'groupID' nei metadat
 Qualunque altra proposta è ben accetta comunque.
 
 Origine di questa nota: [e2.md]
+
+In un'email del 22.04.2022 (subj. "Quesiti su Cadmus") A. Consalvi (penso dopo averne parlato con Elena) ha ribadito la stessa richiesta:
+
+> 1) Nella visualizzazione da che tipo di informazione del modello ricaverai la lista delle opere di tipo testuale presenti nella banca dati? Se, come abbiamo inteso correttamente, la ricavi dal group ID nella linguetta metadata di ciascun item abbiamo pensato che sarebbe utile (con una piccola modifica all'interfaccia dell'immissione dei dati) far sì che si possa agganciare alla classe group id un thesaurus (in questo modo per il group id non ci sarebbe nemmeno più bisogno di digitare manualmente l'abbreviazione, ma la si potrebbe selezionare da un menù a tendina). Tuttavia, tale opzione non deve essere obbligatoria, ma valere unicamente per gli item testuali (e non per i manoscritti). Se questo fosse possibile, faremmo una versione ridotta del thesaurus degli autori (che ovviamente comprende migliaia di opere che non saranno mai incluse nella banca dati).
 
 
 
@@ -124,23 +128,28 @@ Origine di questa nota: [e3.md], punto 0
 
 ### Nuovo layer witnesses
 
-#### Richiesta
+Da [e2.md] (vd. anche lo scambio di email con subj. "Quesiti su Cadmus" di aprile 2022):
 
-Quando aggiungiamo al modello il neonato "witness fragment" (quello che indica quali MSS tramandano un certo item testuale), bisognerà visualizzarlo, possibilmente in un angolino dei layer testuali.
+> Quando aggiungiamo al modello il neonato "witness fragment" (quello che indica quali MSS tramandano un certo item testuale), bisognerà visualizzarlo, possibilmente in un angolino dei layer testuali.
 
-Origine di questa nota: [e2.md] e lo scambio di email con subj. "Quesiti su Cadmus" di aprile 2022.
 
-#### Da un'email di Elena del 30.04.2022
+Da un'email di Elena del 30.04.2022:
 
 > 5. Sono riuscita (faticosamente perché da quando è stato aggiornato il sito si carica molto lentamente e funziona in generale male, cioè si blocca a ogni pagina e va ricaricato in continuazione) ad accedere a Cadmus e ho visto che con l’aggiornamento è stata inserita per gli items-texts una Witnesses part, mentre a noi servirebbe un Witnesses layer, come avevo scritto a Daniele. Ci servirebbe cioè, all'interno del singolo item, di poter evidenziare porzioni di testo anche inferiori a quello dell'intero item e indicare per quelle quali mss. sono disponibili. Se abbiamo, invece, com'è adesso, una Witnesses part, possiamo elencare solo i mss. disponibili per l'intero item.
 
 Ho girato questa richiesta il 30.04.2022 a Daniele.
+
+A. Consalvi aggiunge (dopo l'aggiornamento Cadmus) in un'email del 05.05.2022 dice che la modifica è ancora da fare:
+
+> La part witnesses era già presente in Cadmus, bisogna aggiungere il layer witnesses di cui abbiamo parlato nelle e-mail dal 22/04 al 24/04 anche con Daniele.
 
 #### Visualizzazione del layer
 
 Da un'email di Elena del 27.04.2022:
 
 > dovrebbe essere un riquadrino a comparsa, magari che appare solo quando si visualizza l'Apparatus layer e che comunque l'utente può far sparire se non gli interessa
+
+
 
 ### Numeri di riga
 
@@ -370,14 +379,20 @@ Questi due dossier restano aperti. Michela vuole portare avanti questi output so
 Origine di questa nota: [e2.md], [2022-02-21_riunione_visualizzaz_cadmus.md] e gli scambi di email
 
 
-### Breaking change per aggiornamento Cadmus
+### [SOLVED] Breaking change per aggiornamento Cadmus
 
 - Vd. il breaking change descritto in [questo file](2021-11-26_riunione_io_e_daniele_visualizzaz_cadmus.md)
     - ho scritto a Daniele il 21.03.2022 chiedendogli se sia ancora da fare
     - sì, è da fare, e al 23.04.2022 diventa urgente perché bisogna fare alcune modifiche a Cadmus
 - Aggiornamento fine aprile 2022
     - abbiamo fatto l'aggiornamento il 23.04.2022, e si è 'rotto' Cadmus sul server IS (e nelle installazioni locali sul computer di Paolo); funziona invece sulle VM locali di Daniele. Stiamo provando a debuggare
+- Abbiamo debuggato a inizio maggio 2022
 
+### Copiare-incollare tag linguistici
+
+In un'email del 22.04.2022 (subj. "Quesiti su Cadmus") A. Consalvi (penso dopo averne parlato con Elena) ha chiesto questa modifica a Cadmus:
+
+> 3) Ti chiedo inoltre se sia possibile aggiungere una funzione per quanto concerne l'apparato critico: capita sovente che ad esempio in un trattato di morfologia seguano più esempi che hanno tutti gli stessi tag linguistici, ma diverso lemma. Sarebbe possibile creare una funzione che consenta di copiare e incollare unicamente i tag linguistici? Sarebbe estremamente utile per velocizzare il processo di immissione dati.
 
 
 ## Thread email e link per Paolo
