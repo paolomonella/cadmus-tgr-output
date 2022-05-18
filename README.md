@@ -388,11 +388,13 @@ Origine di questa nota: [e2.md], [2022-02-21_riunione_visualizzaz_cadmus.md] e g
     - abbiamo fatto l'aggiornamento il 23.04.2022, e si è 'rotto' Cadmus sul server IS (e nelle installazioni locali sul computer di Paolo); funziona invece sulle VM locali di Daniele. Stiamo provando a debuggare
 - Abbiamo debuggato a inizio maggio 2022
 
-### Copiare-incollare tag linguistici
+### [DONE] Copiare-incollare tag linguistici
 
 In un'email del 22.04.2022 (subj. "Quesiti su Cadmus") A. Consalvi (penso dopo averne parlato con Elena) ha chiesto questa modifica a Cadmus:
 
 > 3) Ti chiedo inoltre se sia possibile aggiungere una funzione per quanto concerne l'apparato critico: capita sovente che ad esempio in un trattato di morfologia seguano più esempi che hanno tutti gli stessi tag linguistici, ma diverso lemma. Sarebbe possibile creare una funzione che consenta di copiare e incollare unicamente i tag linguistici? Sarebbe estremamente utile per velocizzare il processo di immissione dati.
+
+Il 18.05.20022 A. Consalvi mi scrive che Daniele ha aggiunto la funzione... e funziona.
 
 
 ## Thread email e link per Paolo
