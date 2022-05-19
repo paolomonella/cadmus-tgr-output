@@ -126,7 +126,7 @@ Indicare per ogni item visualizzato
 Origine di questa nota: [e3.md], punto 0
 
 
-### Nuovo layer witnesses
+### Creazione nuovo layer witnesses
 
 Da [e2.md] (vd. anche lo scambio di email con subj. "Quesiti su Cadmus" di aprile 2022):
 
@@ -149,9 +149,56 @@ Daniele scrive il 08/05/22, 17:25:
 
 e poi vd. le query che Daniele ha scritto nella sua email del 08/05/22, 17:50.
 
- 
+Ho dato le due query il 19.05.2022, cioè:
 
-#### Visualizzazione del layer
+```
+db.facets.update({"_id":"text"}, { $push: {  partDefinitions: { "typeId": "it.vedph.token-text-layer", "roleId": "fr.it.vedph.tgr.available-witnesses", "name": "witnesses", "description": "Available witnesses layer.", "colorKey": "FFF194", "groupKey": "text", "sortKey": "witnesses-layer" } } });
+```
+
+E:
+
+```
+db.thesauri.update({"_id":"model-types@en"}, {$push: { entries: { "id": "fr.it.vedph.tgr.available-witnesses", "value": "witnesses fr." } }});
+```
+
+e sembra aver funzionato tutto.
+
+### Correzione tgr/itinera ms-signatures
+
+*Deve farlo Paolo*
+
+In Robo 3T dai:
+
+```
+db.getCollection('thesauri').find({"_id":"model-types@en"})
+```
+
+e nel JSON del thesaurus che trova, devo editare a mano:
+
+```
+    {
+        "_id" : "it.vedph.itinera.ms-signatures",
+        "value" : "ms signatures"
+    },
+```
+
+in: 
+
+```
+ {
+        "_id" : "it.vedph.tgr.ms-signatures",
+        "value" : "ms signatures"
+    },
+```
+
+cioè "itinera" → "tgr"... ma solo dopo averne avuto conferma da Daniele.
+
+
+
+
+
+
+### Visualizzazione nuovo layer witnesses
 
 Da un'email di Elena del 27.04.2022:
 
