@@ -163,17 +163,21 @@ db.thesauri.update({"_id":"model-types@en"}, {$push: { entries: { "id": "fr.it.v
 
 e sembra aver funzionato tutto.
 
-### Correzione tgr/itinera ms-signatures
+...Invece no: si è 'rotto' Cadmus online (19.05.2022 18:10)
 
-*Deve farlo Paolo*
 
-In Robo 3T dai:
+
+
+### Correzione tgr/itinera ms-signatures [FATTO]
+
+
+In Robo 3T oggi 19.05.2022 ho dato:
 
 ```
 db.getCollection('thesauri').find({"_id":"model-types@en"})
 ```
 
-e nel JSON del thesaurus che trova, devo editare a mano:
+e nel JSON del thesaurus che trova, ho editato a mano:
 
 ```
     {
@@ -191,9 +195,44 @@ in:
     },
 ```
 
-cioè "itinera" → "tgr"... ma solo dopo averne avuto conferma da Daniele.
+cioè "itinera" → "tgr".
 
+Poi, sempre in Robo 3T, in
 
+```
+db.getCollection('facets').find({})
+```
+
+nell'entry con `_id` : `manuscript`
+
+in
+
+```
+        {
+            "typeId" : "it.vedph.itinera.ms-signatures",
+            "roleId" : null,
+            "name" : "ms signatures",
+            "description" : "Manuscript's signatures.",
+            "isRequired" : true,
+            "colorKey" : "D7D5DB",
+            "groupKey" : "manuscript",
+            "sortKey" : "ms-signatures"
+        }, 
+```
+
+ho editato a mano
+
+```
+            "typeId" : "it.vedph.itinera.ms-signatures",
+```
+
+in
+
+```
+            "typeId" : "it.vedph.tgr.ms-signatures",
+```
+
+...ma i problemi di Cadmus 'rotto' ci sono ancora.
 
 
 
