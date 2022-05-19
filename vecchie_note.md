@@ -18,6 +18,156 @@ Ad esempio, in ~/pages/cadmus/output/2022-03-07_bisettimanale.md c'è un paragra
 
 
 
+## Stralcio su ricerche strutt. su MSS da e3 [tutto riportato]
+
+- Ho tolto il punto **a**, che riguardava la ricerca libera
+- Ho riassunto i contenuti delle indicazioni di Elena nel file [ricerche_mss.md](ricerche_mss.md)
+
+~~~
+    b) filtri per ricerca avanzata:
+
+        I) datazione (orig. dati: HistoricalDate) [fatto]
+
+        II) origine geografica (orig. dati: MsPlacesPart > MsPlace) [fatto]
+
+        III) scrittura (orig. dati: MsScriptsPart > MsScript > type = thesarus ms-script-types) [fatto]
+
+        IV) mani (orig. dati: MsScriptsPart > MsHand > id) [fatto]
+
+        IV) contenuti testuali (orig. dati: MsContentsPart > MsContent > work =
+        thesaurus author-work o manually written string) → [fatto]
+
+I risultati della ricerca dovrebbero apparire sempre come lista ordinata alfabeticamente sulla base della segnatura dei manoscritti (orig. dati: Metadata > Title). La ricerca dovrebbe poter funzionare sia che il campo libero di ricerca sia utilizzato sia che non lo sia (cioè se lo si lascia vuoto e si usano solo i filtri).
+~~~
+
+Origine di questa nota: [e3.md], punto 2
+
+
+
+### Email 24.04.2022 richiesta conferme [tutto riportato]
+
+*Riassumo come testo citato le risposte che ho avuto da Elena a fine aprile 2022 via email (in due sue email, del 27 e 30 aprile). Ho già riportato altrove nei file di questa cartella gli effetti di tali risposte.*
+
+Carissim*,
+
+in questi giorni sono stato in contatto con Daniele per il lavoro sulle ricerche nel sito che visualizzerà i dati di Cadmus, e vorrei chiedervi qualche conferma:
+
+1. Per il livello dell'apparato critico, ho inserito una ricerca libera anche sul seguente campo:
+
+- `note`: an optional annotation. When `type` is _note_, `value` has no meaning, and this property contains the note's text. Otherwise, this can be an additional note, side to side with the variant's value.
+
+Pensate che serva?
+
+> Sì
+
+
+2. Non prevediamo di usare `NotePart` per note generiche. Noi usiamo solo `NotePart` con `role`=`transl` e `tag`=language (`NotePart`), giusto?
+
+> Esatto
+
+
+3. Online avremo solo la traduzione inglese, non anche quella italiana, giusto?
+
+> Poi anche italiana per altri grammatici
+
+
+4. Pensiamo di usare mai in futuro il campo `groupID` in `interpolations`? Interpolations può coprire le seguenti categorie: "paleographic transcription", "gloss", "paratext", "humanistic interpolation". Non so a cosa serva, o se usiamo/useremo, `groupID`.
+
+
+> Sì, avevamo previsto la class groupID anche nell'Interpolations Layer (che appunto non è concepito solo per le interpolazioni) per poterla eventualmente utilizzare per raggruppare serie di glosse o interpolazioni che ricorrono identiche o molto simili in più witnesses. 
+
+> (risposta del 01.05.2022 h 10:11): solo ricerca libera su questo groupID
+
+*Nota*: In un'email del 01.05.2022 h 10:11 E. ha scritto, parlando di `groupId`: "A questo punto direi di lasciare solo una eventuale ricerca libera su questo campo (cioè solo la ricerca libera su tutti i layer, senza prevedere alcun filtro specifico per questo campo)". Sto chiarendo con lei che per gli item testuali non abbiamo una "ricerca libera su tutti i layer".
+
+
+5. Quando inseriremo il nuovo layer `witnesses` (che indica quali MSS tramandano un certo item testuale) bisognerà visualizzarlo: va bene visualizzarlo in un un angolino della schermata di ogni layer testuale?
+
+> Sì
+
+6. Per i filtri di ricerca su MSS, Elena aveva scritto "II. origine geografica (orig. dati: MsPlacesPart > MsPlace)". All'interno del modello di MsPlace al momento ho selezionato i seguenti campi:
+
+- `places` (`MsPlace[]`):
+  - `area`\* (`string`, thesaurus)
+  - `city` (`string`)
+
+6.1 Per ora ho escluso il campo `site`. Va bene escluderlo, o pensiamo di utilizzarlo per dati significativi (oltre a 'area' e 'city')?
+
+> risposta breve: mi hanno poi detto di includere anche site
+
+6.2 Per quanto riguarda `area`: 
+
+Finora ci sono solo due casi in cui MsPlaces sia popolato, da Fatima, che ha scritto così:
+
+    "area" : "Germania occidentale",
+    "address" : null,
+    "city" : "Aquisgrana",
+    "site" : null,
+e
+
+    "area" : "tra Renania centrale e Renania settentrionale",
+    "address" : null,
+    "city" : null,
+    "site" : null,
+
+Il modello che ho riportato sopra dice che `area` dovrebbe trarre i suoi dati da un thesaurus. Ma al momento questo thesaurus non c'è ancora in Cadmus, e il secondo caso compilato da Fatima ("tra Renania...") mi sembra più a compilazione libera. Se il campo `area` sarà a compilazione 'obbligata' da un thesaurus, potremo prevedere una ricerca 'filtrata'. Se invece sarà a compilazione libera, penso sia meglio permettere all'utente solo ricerca libera (per parole chiave). 
+
+Riassumendo:
+- per `site`, chiedo a voi come vorremo usarlo in fase di compilazione;
+- per `area`: pensiamo di farlo 'pescare' da un thesaurus?
+- per `city`: prevederei comunque (thesaurus o no) una ricerca 'filtrata' (i nomi di città sono un insieme di per sé piuttosto limitato).
+
+> Vd. il par. "Nuovi thesauri MsPlacesPart e MsSignature" su questo. Dopo di che, ricerca strutturata su area, city e site
+
+
+7. Mi confermate che non permettiamo una ricerca 'filtrata' per `signature`, giusto? Se non lo prevediamo, l'utente che cerchi un preciso MS avendone la segnatura dovrà scorrere la pagina (o usare control-F / find). Ma è probabile che la lista completa dei MS sarà divisa tra più schermate, perché attualmente ci sono centinaia di MSS in Cadmus.
+Il modello di `signature` è:
+
+- signatures (`MsSignature[]`):
+  - `tag` (`string`, thesaurus `ms-signature-tags`)
+  - `city`\* (`string`)
+  - `library`\* (`string`)
+  - `fund` (`string`)
+  - `location`\* (`string`)
+
+> E. ha risposto che era utile una ricerca filtrata per signature. Ma riflettendoci, dato che comunque si può fare una ricerca libera su tutti i campi di testo, non ce n'è bisogno: se cerco "3313" come ricerca libera, troverò comunque il MS Z.
+
+8. Ricerca di MSS per datazione.
+
+La datazione, nel nostro modello, è attribuita
+
+- agli `script` (che qui non ci interessa)
+- e poi non all'intero MS, ma alle `units` (codicological units) e ai `palimpsests`, descritti come "the sheet(s) which are palimpsests inside this unit".
+
+Ho chiesto a daniele di impostare una ricerca per datazione che cerchi tra le datazioni delle `units` e dei `palimpsests`. Il riferimento all'intero manoscritto andrà comunque mostrato.
+
+> OK
+
+9. Indici
+
+Inizialmente avevamo parlato, oltre che di 'browse' e 'search', anche di indici. Intendo per 'indici' quelli tradizionali a stampa, quindi qualcosa di diverso ad esempio da una lista di MSS: gli indici vengono generati dal software.
+
+Vogliamo ancora farli, come distinti dalla pagina ricerche? Se sì, per cosa? Una proposta:
+
+9.1 Autori e opere citate nel testo di Prisciano, distinti per tipo di `authority`("grammatical/linguistic")
+- `quotations` (`VarQuotation[]`): quotations with variants:
+  - `work`\* (`string`, hierarchical thesaurus: `author-works`): author and work.
+  - `authority`\* (`string`, thesaurus: `quotation-authorities`): the authority type (grammatical/linguistic)
+
+9.2 Autori citati nelle interpolazioni umanistiche (`interpolations` con `role`="interp")
+- `interpolations` (`Interpolation[]`):
+  - `quotations` (`VarQuotation[]`)
+
+9.3 Lemmi annotati linguisticamente
+- `forms` (`LingTaggedForm[]`):
+  - `lemmata` (`string[]`: optional normalized text forms
+
+Ve ne vengono in mente altri? 
+
+Grazie e a presto,
+Paolo
+
+
 ## home [outdated]
 
 - homepage: contiene header e footer con info sul progetto, similmente al [sito vetrina](https://web.uniroma1.it/pages/), ma (info) più stringate
