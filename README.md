@@ -143,6 +143,14 @@ A. Consalvi aggiunge (dopo l'aggiornamento Cadmus) in un'email del 05.05.2022 di
 
 > La part witnesses era già presente in Cadmus, bisogna aggiungere il layer witnesses di cui abbiamo parlato nelle e-mail dal 22/04 al 24/04 anche con Daniele.
 
+Daniele scrive il 08/05/22, 17:25:
+
+> Per witnesses, credo si debba aggiornare il profilo nel database, altrimenti non vede il nuovo layer. Ora riguardo e ti mando query.
+
+e poi vd. le query che Daniele ha scritto nella sua email del 08/05/22, 17:50.
+
+ 
+
 #### Visualizzazione del layer
 
 Da un'email di Elena del 27.04.2022:
