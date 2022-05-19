@@ -225,39 +225,27 @@ Il gruppo chiede di creare una mappa con una barra "linea del tempo" in basso.
 Origine di questa nota: [2021-11-25_riunione_umanisti_visualizzaz_cadmus.md], par. "Manoscritti"
 
 
-### Nuovi thesauri area/city/site MSS
 
-Michela e Elena hanno deciso (vd. email da Elena del 30.04.2022) di creare tre nuovi thesauri di areas, cities, sites.
 
-A questo punto, quando i thesauri saranno creati, bisognerebbe cambiare il modello di `MsPlacesPart` (da <https://github.com/vedph/cadmus_tgr_doc/blob/master/models.md>), nei seguenti punti:
+### Nuovi thesauri MsPlacesPart e MsSignature
 
-- `places` (`MsPlace[]`):
-  - `area`\* (`string`, thesaurus)
-  - [...]
-  - `city` (`string`)
-  - `site` (`string`)
+Michela e Elena hanno deciso di creare dei nuovi thesauri per
 
-nel senso che `area`, `city` e `site` dovrebbero prendere i loro dati da questi nuovi thesauri. Allo stato attuale del DB (30.04.2022), pochissimi (meno di una decina) di item MS hanno tali campi popolati, quindi si possono anche cancellare 'a mano' segnandosi altrove il contenuto, per poi reinserirlo quando i thesauri saranno creati.
+- `area`, `city`, `site` di `MsPlacesPart`
+    - (fonte: un'email di Elena del 01/05/22, 10:11, punto 7bis)
+- `city`, `library` e `fund` di `MsSignaturesPart`
+    - (fonte: un'email di Elena del 01/05/22, 10:29)
+
+Quindi bisognerebbe cambiare il modello di `MsPlacesPart` (da <https://github.com/vedph/cadmus_tgr_doc/blob/master/models.md>) e di `MsSignaturesPart` (da [Itinera](https://github.com/vedph/cadmus_itinera_doc/blob/master/models.md#mssignaturespart)) in modo da agganciare queste proprietà ai nuovi thesauri (che al 19.05.2022 sono ancora da creare).
+
+Per quanto riguarda `area`, `city` e `site` di `MsPlace`, allo stato attuale del DB (30.04.2022), pochissimi (meno di una decina) di item MS hanno tali campi popolati, quindi si possono anche cancellare 'a mano' segnandosi altrove il contenuto, per poi reinserirlo quando i thesauri saranno creati.
 
 I thesauri saranno piuttosto lunghi, quindi sarà necessario che i collaboratori Cadmus possano (nell'interfaccia/app Cadmus) cercare al loro interno, come già si fa per il thesaurus authors/works e dei tag linguistici.
 
 
 
-### City e library in MsSignaturesPart
 
-`MsSignaturesPart` è "Inspired by [Itinera](https://github.com/vedph/cadmus_itinera_doc/blob/master/models.md#msplacepart)".
 
-In esso si trovano due proprietà, `city` e `library`. Cito dal modello di Itinera:
-
-- signatures (`MsSignature[]`):
-  - `city`\* (`string`)
-  - `library`\* (`string`)
-  - `fund` (`string`)
-  - `location`\* (`string`)
-
-Hanno deciso che il `city` di TGR/`MsPlacesPart` debba essere agganciato a un suo thesaurus. Possiamo agganciare anche il `city` di Itinera/`MsSignaturesPart` allo stesso thesaurus?
-
-Sto chiedendo agli umanisti PAGES se per caso il `library` di Itinera/`MsSignaturesPart` coincida, come contenuto, con il `site` di TGR/`MsPlacesPart` (che sarà agganciato anch'esso ad un thesaurus di biblioteche). Se mi dicono che è così, possiamo agganciare anche il `library` di Itinera/`MsSignaturesPart` allo stesso thesaurus?
 
 
 ### Codices disiecti
@@ -520,6 +508,8 @@ Pensate che serva?
   - `city` (`string`)
 
 6.1 Per ora ho escluso il campo `site`. Va bene escluderlo, o pensiamo di utilizzarlo per dati significativi (oltre a 'area' e 'city')?
+
+[risposta breve: mi hanno detto di includere anche site]
 
 6.2 Per quanto riguarda `area`: 
 

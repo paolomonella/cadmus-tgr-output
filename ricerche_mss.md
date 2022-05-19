@@ -2,7 +2,7 @@
 
 # A. Indicazioni generali
 
-## Ricerca "bruta" per testo
+## Ricerca "bruta" libera per testo
 
 Bisognerebbe indicizzare tutti i campi testuali degli item MSS: l'utente può fare una ricerca di testo libero che 'pesca' in tutte le parts che compongono gli items-manuscripts (e contengono testo).
 
@@ -16,9 +16,8 @@ I risultati della ricerca dovrebbero apparire sempre come lista ordinata alfabet
 
 ## Parti senza ricerche strutturate
 
-Per le seguenti parti non è prevista nessuna rierca 'strutturata', ma solo ricerca libera sui campi testuali:
+Per le seguenti parti non è prevista nessuna rierca 'strutturata', ma solo ricerca libera su tutti i campi testuali:
 
-- MsSignaturesPart
 - MsFormalFeaturesPart
 - MsOrnamentsPart
 - MsHistoryPart
@@ -36,6 +35,31 @@ Per le seguenti parti non è prevista nessuna rierca 'strutturata', ma solo rice
 
 
 
+
+
+## MsSignaturesPart
+
+### Modello
+
+See [Itinera](https://github.com/vedph/cadmus_itinera_doc/blob/master/models.md#mssignaturespart).
+
+- signatures (`MsSignature[]`):
+  - `tag` (`string`, thesaurus `ms-signature-tags`)
+  - `city`\* (`string`)
+  - `library`\* (`string`)
+  - `fund` (`string`)
+  - `location`\* (`string`)
+
+### Proprietà utili per la ricerca
+
+- signatures (`MsSignature[]`):
+  - `city`\* (`string`)
+  - `library`\* (`string`)
+  - `fund` (`string`)
+
+*Nota*: in un'email del 01/05/22, 10:11 Elena elena scrive:
+
+> forse non sarebbe male poter consultare la lista delle signatures di mss compresi nella banca dati filtrando progressivamente city, library, fund e poi o facendo una ricerca libera sul solo campo location oppure visualizzando l'elenco delle segnature per i city - library - fund selezionati (es. tutti i Vat. lat., cfr. https://bvmm.irht.cnrs.fr/recherche/rechercheParVille.php ).
 
 
 
@@ -61,7 +85,7 @@ Da <https://github.com/vedph/cadmus_tgr_doc/blob/master/models.md>:
   - `city` (`string`)
   - `site` (`string`)
 
-*Nota*: in [README.md], paragrafo "Nuovi thesauri area/city/site MSS" chiediamo una modifica a Cadmus, per cui tutte e tre le proprietà `area`, `city` e `site` peschino da specifici thesauri (costituendi, al 30.04.2022).
+*Nota*: in [README.md], paragrafo "Nuovi thesauri MsPlacesPart e MsSignature" chiediamo che `area`, `city` e `site` siano ora agganciati a dei thesauri (che dobbiamo ancora creare) di luoghi medievali di origine dei manoscritti.
 
 
 
