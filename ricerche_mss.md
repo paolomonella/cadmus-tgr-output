@@ -57,6 +57,8 @@ See [Itinera](https://github.com/vedph/cadmus_itinera_doc/blob/master/models.md#
   - `library`\* (`string`)
   - `fund` (`string`)
 
+*Nota*: in [README.md], paragrafo "Nuovi thesauri MsPlacesPart e MsSignature" chiediamo che `city`, `library` e `fund` siano ora agganciati a dei thesauri (che dobbiamo ancora creare) di luoghi medievali di origine dei manoscritti.
+
 *Nota*: in un'email del 01/05/22, 10:11 Elena elena scrive:
 
 > forse non sarebbe male poter consultare la lista delle signatures di mss compresi nella banca dati filtrando progressivamente city, library, fund e poi o facendo una ricerca libera sul solo campo location oppure visualizzando l'elenco delle segnature per i city - library - fund selezionati (es. tutti i Vat. lat., cfr. https://bvmm.irht.cnrs.fr/recherche/rechercheParVille.php ).
