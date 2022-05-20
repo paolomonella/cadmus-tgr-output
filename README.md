@@ -151,13 +151,13 @@ e poi vd. le query che Daniele ha scritto nella sua email del 08/05/22, 17:50.
 
 Ho dato le due query il 19.05.2022, cioè:
 
-```
+```{#query1905a}
 db.facets.update({"_id":"text"}, { $push: {  partDefinitions: { "typeId": "it.vedph.token-text-layer", "roleId": "fr.it.vedph.tgr.available-witnesses", "name": "witnesses", "description": "Available witnesses layer.", "colorKey": "FFF194", "groupKey": "text", "sortKey": "witnesses-layer" } } });
 ```
 
 E:
 
-```
+```{#query1905b}
 db.thesauri.update({"_id":"model-types@en"}, {$push: { entries: { "id": "fr.it.vedph.tgr.available-witnesses", "value": "witnesses fr." } }});
 ```
 
@@ -165,6 +165,22 @@ e sembra aver funzionato tutto.
 
 ...Invece no: si è 'rotto' Cadmus online (19.05.2022 18:10)
 
+Il giorno dopo (20.05.2022) su consiglio di Daniele ho cancellato l'intero thesaurus `model-types@en` da Robo 3T e l'ho ricreato a mano dalla UI Cadmus. Ho trovato anche qual era l'errore: nella [prima query](#query1905a) avevo scritto `id` invece di `_id`, cioè
+`"id" : "fr.it.vedph.tgr.available-witnesses"`
+invece di
+`"_id" : "fr.it.vedph.tgr.available-witnesses"`
+col seguente risultato nel JSON:
+
+```
+        {
+            "id" : "fr.it.vedph.tgr.available-witnesses", 
+            "value" : "witnesses fr."
+        }
+```
+
+invece di `_id` etc.
+
+Oggi 20.05.2020 09:50 il problema sembra risolto. Chiedo però a A. Consalvi se è tutto a posto ora.
 
 
 
