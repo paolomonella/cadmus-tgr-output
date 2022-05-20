@@ -126,7 +126,7 @@ Indicare per ogni item visualizzato
 Origine di questa nota: [e3.md], punto 0
 
 
-### Creazione nuovo layer witnesses
+### [DONE] Creazione nuovo layer witnesses
 
 Da [e2.md] (vd. anche lo scambio di email con subj. "Quesiti su Cadmus" di aprile 2022):
 
@@ -180,11 +180,11 @@ col seguente risultato nel JSON:
 
 invece di `_id` etc.
 
-Oggi 20.05.2020 09:50 il problema sembra risolto. Chiedo però a A. Consalvi se è tutto a posto ora.
+Oggi 20.05.2020 09:50 il problema è completamente risolto, e il nuovo layer witnesses funziona come desiderato.
 
 
 
-### Correzione tgr/itinera ms-signatures [FATTO]
+### [DONE] Correzione tgr/itinera ms-signatures
 
 
 In Robo 3T oggi 19.05.2022 ho dato:
