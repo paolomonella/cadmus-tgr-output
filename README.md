@@ -542,6 +542,10 @@ Ho creato questo file a fine aprile 2022 riportando qui le questioni ancora aper
     - poi cambia subj. in "Conferme su ricerche testuali e indici [era: Re: Nuovo link schema]"
 
 
+### Appunti di riunioni
+
+- Nel mio computer, sono nella cartella `pages/riunioni` (quelle con Websoup hanno 'websoup' nel nome file)
+
 
 
 ### Link utili
