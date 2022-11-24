@@ -2,6 +2,10 @@
 
 # A. Indicazioni generali
 
+## Ricerche incrociate
+
+Dev'essere possibile all'utente fare anche ricerche incrociate
+
 ## Ricerca "bruta" libera per testo
 
 Bisognerebbe indicizzare tutti i campi testuali degli item MSS: l'utente può fare una ricerca di testo libero che 'pesca' in tutte le parts che compongono gli items-manuscripts (e contengono testo).
