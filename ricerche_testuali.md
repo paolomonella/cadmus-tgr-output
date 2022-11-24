@@ -1,6 +1,11 @@
 # Mapping criteri di ricerca: ricerche testuali
 
 
+## Ricerche incrociate
+
+Dev'essere possibile all'utente fare anche ricerche incrociate
+
+
 
 
 ## TokenTextPart
